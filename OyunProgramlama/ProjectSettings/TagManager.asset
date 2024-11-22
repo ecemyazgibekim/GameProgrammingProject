@@ -8,6 +8,9 @@ TagManager:
   - CinemachineTarget
   - ScreenCamera
   - cockpit_capitalLaser
+  - RedTag
+  - BlueTag
+  - GreenTag
   layers:
   - Default
   - TransparentFX

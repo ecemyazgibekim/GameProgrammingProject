@@ -39,7 +39,7 @@ public class DragObject : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * maxRayDistance, Color.red);
         if (Physics.Raycast(ray, out RaycastHit hit, maxRayDistance))
         {
-            Debug.Log("Ray nesneye çarptı: " + hit.transform.name);
+            //Debug.Log("Ray nesneye çarptı: " + hit.transform.name);
         }
 
         

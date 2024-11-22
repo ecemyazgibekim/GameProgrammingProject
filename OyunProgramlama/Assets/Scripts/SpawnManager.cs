@@ -38,7 +38,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnObject(GameObject obj)
     {
         Vector3 spawnPosition = GetRandomPointInBounds(spawnArea.bounds);
-        Instantiate(obj, spawnPosition, Quaternion.identity);
+         GameObject spawnedObject = Instantiate(obj, spawnPosition, Quaternion.identity, this.transform);
     }
 
     private Vector3 GetRandomPointInBounds(Bounds bounds)
