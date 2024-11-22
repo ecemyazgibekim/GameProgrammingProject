@@ -9,22 +9,24 @@ public class CylinderController : MonoBehaviour
     private bool[] spawnPointOccupied;
     private string objectTypeOnCylinder = null;
     public int maxObjects = 3;
-    public float rejectionForce = 200f; // Kuvvetin büyüklüğü
+    public float rejectionForce = 200f; 
+    public AudioClip rejectionSFX; 
+    private AudioSource audioSource; 
+    public AudioClip positiveSFX; 
 
     void Start()
     {
         spawnPointOccupied = new bool[spawnPoints.Length];
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Eğer nesne zaten listede varsa, işlemi sonlandır
         if (objectsOnCylinder.Contains(other.gameObject))
         {
             return;
         }
 
-        // Tüm spawn noktaları doluysa, nesneyi reddet
         if (objectsOnCylinder.Count >= maxObjects)
         {
             Debug.Log("Silindir dolu, daha fazla nesne eklenemez!");
@@ -32,7 +34,6 @@ public class CylinderController : MonoBehaviour
             return;
         }
 
-        // İlk nesneyi yerleştirirken türünü belirle
         if (objectsOnCylinder.Count == 0)
         {
             objectTypeOnCylinder = other.gameObject.tag;
@@ -40,7 +41,6 @@ public class CylinderController : MonoBehaviour
         }
         else
         {
-            // Nesne türü eşleşiyorsa ekle, aksi takdirde reddet
             if (other.gameObject.tag == objectTypeOnCylinder)
             {
                 MoveToSpawnPoint(other.gameObject);
@@ -66,7 +66,12 @@ public class CylinderController : MonoBehaviour
 
                 if (obj.TryGetComponent(out DragObject dragScript))
                 {
-                    Destroy(dragScript); // Sürükleme işlemini devre dışı bırak
+                    Destroy(dragScript); 
+                }
+
+                if (positiveSFX != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(positiveSFX); 
                 }
 
                 spawnPointOccupied[i] = true;
@@ -85,9 +90,14 @@ public class CylinderController : MonoBehaviour
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            Vector3 rejectionDirection = (obj.transform.position - transform.position).normalized; // Silindirin merkezinden uzağa doğru yön
+            Vector3 rejectionDirection = (obj.transform.position - transform.position).normalized; 
             rb.AddForce(rejectionDirection * rejectionForce);
             Debug.Log($"Nesne geriye itildi: {obj.name}");
+            
+            if (rejectionSFX != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(rejectionSFX); 
+            }
         }
     }
 }
