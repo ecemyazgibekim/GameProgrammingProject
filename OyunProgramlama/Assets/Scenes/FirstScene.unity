@@ -251,12 +251,12 @@ GameObject:
   - component: {fileID: 161516925}
   - component: {fileID: 161516924}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: TestPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &161516924
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1804,7 +1804,7 @@ Transform:
   m_GameObject: {fileID: 1487394901}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.33, y: 1.72, z: -3.59}
+  m_LocalPosition: {x: 0.33, y: 1.72, z: -2.23}
   m_LocalScale: {x: 5, y: 0.1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1828,6 +1828,7 @@ MonoBehaviour:
   - {fileID: 1795855423}
   - {fileID: 19064924}
   maxObjects: 2
+  rejectionForce: 500
 --- !u!65 &1487394907
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2800,8 +2801,8 @@ SceneRoots:
   - {fileID: 1318261688}
   - {fileID: 117282321}
   - {fileID: 1061268193}
+  - {fileID: 161516927}
   - {fileID: 562057293}
   - {fileID: 122290906}
   - {fileID: 169974951}
-  - {fileID: 161516927}
   - {fileID: 1487394905}
