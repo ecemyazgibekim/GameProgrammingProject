@@ -11,6 +11,23 @@ TagManager:
   - RedTag
   - BlueTag
   - GreenTag
+  - ObAcom
+  - ObApple
+  - ObBanana
+  - ObCake
+  - ObCandy
+  - ObGrape
+  - OpHam
+  - ObIceCream
+  - ObLemon
+  - ObOnion
+  - ObOrange
+  - ObPea
+  - ObPumpkin
+  - ObTomato
+  - ObWaffle
+  - ObYam
+  - ObYogurt
   layers:
   - Default
   - TransparentFX
