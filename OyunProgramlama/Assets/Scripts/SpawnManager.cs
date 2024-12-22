@@ -6,7 +6,6 @@ public class SpawnManager : MonoBehaviour
 {
     [Header("Spawnable Object List")]
     public List<GameObject> spawnableObjects; 
-    public int spawnCount; 
 
     [Header("Spawn Area")]
     public Collider spawnArea; 
@@ -18,27 +17,25 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnObjects()
     {
-        if (spawnableObjects.Count == 0 || spawnArea == null || spawnCount <= 0) 
+        if (spawnableObjects.Count == 0 || spawnArea == null) 
         {
             Debug.LogWarning("Spawn işlemi için gerekli ayarlar eksik.");
             return;
         }
 
-        List<GameObject> objectsToSpawn = new List<GameObject>(spawnableObjects);
-
-        for (int i = 0; i < spawnCount; i += 2)
+        foreach (GameObject obj in spawnableObjects)
         {
-            if (objectsToSpawn.Count == 0) break;
-            GameObject selectedObject = objectsToSpawn[Random.Range(0, objectsToSpawn.Count)];
-            SpawnObject(selectedObject);
-            SpawnObject(selectedObject);
+            for (int i = 0; i < 2; i++)
+            {
+                SpawnObject(obj);
+            }
         }
     }
 
     private void SpawnObject(GameObject obj)
     {
         Vector3 spawnPosition = GetRandomPointInBounds(spawnArea.bounds);
-         GameObject spawnedObject = Instantiate(obj, spawnPosition, Quaternion.identity, this.transform);
+        Instantiate(obj, spawnPosition, Quaternion.identity, this.transform);
     }
 
     private Vector3 GetRandomPointInBounds(Bounds bounds)
