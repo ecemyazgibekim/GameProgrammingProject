@@ -54,6 +54,7 @@ public class CylinderController : MonoBehaviour
                 {
                     PlayDuplicateTagEffect();
                     IncreaseScore(50);
+                    StartCoroutine(ClearSpawnPointsAfterDelay(0.5f));
                 }
             }
             else
@@ -138,5 +139,31 @@ public class CylinderController : MonoBehaviour
         {
             scoreText.text = "Score: " + score;
         }
+    }
+
+    private IEnumerator ClearSpawnPointsAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        foreach (Transform spawnPoint in spawnPoints)
+        {
+            foreach (Transform child in spawnPoint)
+            {
+                Destroy(child.gameObject); 
+            }
+        }
+
+        foreach (GameObject obj in objectsOnCylinder)
+        {
+            Destroy(obj); 
+        }
+
+        objectsOnCylinder.Clear(); 
+        for (int i = 0; i < spawnPointOccupied.Length; i++)
+        {
+            spawnPointOccupied[i] = false; 
+        }
+
+        Debug.Log("Spawn noktaları ve sahnedeki nesneler temizlendi.");
     }
 }
