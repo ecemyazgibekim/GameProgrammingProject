@@ -14,6 +14,7 @@ public class CylinderController : MonoBehaviour
     private AudioSource audioSource; 
     public AudioClip positiveSFX; 
     public AudioClip duplicateTagSFX; 
+    public GameObject duplicateTagVFX; 
 
     void Start()
     {
@@ -113,6 +114,12 @@ public class CylinderController : MonoBehaviour
         {
             audioSource.PlayOneShot(duplicateTagSFX);
             Debug.Log("Aynı tag'e sahip 2 nesne silindir üzerinde!");
+        }
+
+        if (duplicateTagVFX != null)
+        {
+            Instantiate(duplicateTagVFX, transform.position, Quaternion.identity);
+            Debug.Log("Duplicate tag VFX oynatıldı.");
         }
     }
 }
