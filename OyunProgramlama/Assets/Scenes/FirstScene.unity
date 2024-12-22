@@ -1256,6 +1256,7 @@ MonoBehaviour:
   positiveSFX: {fileID: 8300000, guid: efae402b98d87b34f9cb0c722532c81d, type: 3}
   duplicateTagSFX: {fileID: 0}
   duplicateTagVFX: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!65 &1487394907
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1556,6 +1557,7 @@ MonoBehaviour:
   positiveSFX: {fileID: 8300000, guid: efae402b98d87b34f9cb0c722532c81d, type: 3}
   duplicateTagSFX: {fileID: 8300000, guid: 2295ee2a3e78b8b4ebd1aefc1efc0915, type: 3}
   duplicateTagVFX: {fileID: 4938095755617958529, guid: 2e79f16be10fbd14f8d5ef191f8db4aa, type: 3}
+  scoreText: {fileID: 2128770601}
 --- !u!65 &1548136126
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2761,8 +2763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 91.70001, y: -94.70001}
-  m_SizeDelta: {x: 100, y: 60}
+  m_AnchoredPosition: {x: 123, y: -94.70001}
+  m_SizeDelta: {x: 220, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2128770601
 MonoBehaviour:
@@ -2811,14 +2813,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

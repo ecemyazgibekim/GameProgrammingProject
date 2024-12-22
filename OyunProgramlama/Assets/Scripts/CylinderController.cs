@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CylinderController : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class CylinderController : MonoBehaviour
     private bool[] spawnPointOccupied;
     private string objectTypeOnCylinder = null;
     public int maxObjects = 3;
-    public float rejectionForce = 200f; 
+    public float rejectionForce = 500f; 
     public AudioClip rejectionSFX; 
     private AudioSource audioSource; 
     public AudioClip positiveSFX; 
     public AudioClip duplicateTagSFX; 
     public GameObject duplicateTagVFX; 
+    public TMP_Text scoreText;
+    private int score = 0; 
 
     void Start()
     {
@@ -50,6 +53,7 @@ public class CylinderController : MonoBehaviour
                 if (objectsOnCylinder.FindAll(obj => obj.tag == objectTypeOnCylinder).Count == 2)
                 {
                     PlayDuplicateTagEffect();
+                    IncreaseScore(50);
                 }
             }
             else
@@ -119,7 +123,20 @@ public class CylinderController : MonoBehaviour
         if (duplicateTagVFX != null)
         {
             Instantiate(duplicateTagVFX, transform.position, Quaternion.identity);
-            Debug.Log("Duplicate tag VFX oynatıldı.");
+        }
+    }
+
+    private void IncreaseScore(int amount)
+    {
+        score += amount;
+        UpdateScoreText();
+    }
+
+    private void UpdateScoreText()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score;
         }
     }
 }
