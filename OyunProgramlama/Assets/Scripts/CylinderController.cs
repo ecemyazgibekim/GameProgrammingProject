@@ -13,6 +13,7 @@ public class CylinderController : MonoBehaviour
     public AudioClip rejectionSFX; 
     private AudioSource audioSource; 
     public AudioClip positiveSFX; 
+    public AudioClip duplicateTagSFX; 
 
     void Start()
     {
@@ -44,6 +45,11 @@ public class CylinderController : MonoBehaviour
             if (other.gameObject.tag == objectTypeOnCylinder)
             {
                 MoveToSpawnPoint(other.gameObject);
+
+                if (objectsOnCylinder.FindAll(obj => obj.tag == objectTypeOnCylinder).Count == 2)
+                {
+                    PlayDuplicateTagEffect();
+                }
             }
             else
             {
@@ -98,6 +104,15 @@ public class CylinderController : MonoBehaviour
             {
                 audioSource.PlayOneShot(rejectionSFX); 
             }
+        }
+    }
+
+    private void PlayDuplicateTagEffect()
+    {
+        if (duplicateTagSFX != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(duplicateTagSFX);
+            Debug.Log("Aynı tag'e sahip 2 nesne silindir üzerinde!");
         }
     }
 }
