@@ -31,11 +31,14 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
+    
+    public List<GameObject> spawnedObjects = new List<GameObject>(); 
 
     private void SpawnObject(GameObject obj)
     {
         Vector3 spawnPosition = GetRandomPointInBounds(spawnArea.bounds);
-        Instantiate(obj, spawnPosition, Quaternion.identity, this.transform);
+        GameObject spawnedObject = Instantiate(obj, spawnPosition, Quaternion.identity, this.transform);
+        spawnedObjects.Add(spawnedObject); 
     }
 
     private Vector3 GetRandomPointInBounds(Bounds bounds)

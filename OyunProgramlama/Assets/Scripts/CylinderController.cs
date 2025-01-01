@@ -9,7 +9,7 @@ public class CylinderController : MonoBehaviour
     private List<GameObject> objectsOnCylinder = new List<GameObject>();
     private bool[] spawnPointOccupied;
     private string objectTypeOnCylinder = null;
-    public int maxObjects = 3;
+    public int maxObjects = 300;
     public float rejectionForce = 900f; 
     public AudioClip rejectionSFX; 
     private AudioSource audioSource; 
@@ -20,26 +20,45 @@ public class CylinderController : MonoBehaviour
     private int score = 0; 
     public TMP_Text timerText; 
     public GameObject failurePanel; 
+    public GameObject successPanel; 
     private float timer = 300f; 
     private bool gameRunning = true; 
+    public SpawnManager spawnManager;
 
     void Start()
     {
+        StartCoroutine(TimerCountdown());
         spawnPointOccupied = new bool[spawnPoints.Length];
         audioSource = gameObject.AddComponent<AudioSource>();
         UpdateScoreText();
         failurePanel.SetActive(false); 
-        StartCoroutine(TimerCountdown());
+        successPanel.SetActive(false); 
     }
 
-        void Update()
+    void Update()
     {
         if (gameRunning) 
         {
             UpdateTimerText(); 
+
+            if (score >= 1150 || AreAllPrefabsCleared()) 
+            {
+                GameSuccess();
+            }
         }
     }
 
+    private bool AreAllPrefabsCleared()
+    {
+        foreach (GameObject obj in spawnManager.spawnedObjects)
+        {
+            if (obj != null) 
+            {
+                return false;
+            }
+        }
+        return true; 
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -189,6 +208,7 @@ public class CylinderController : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             timer -= 1f; 
+            UpdateTimerText(); 
         }
 
         GameOver(); 
@@ -209,9 +229,13 @@ public class CylinderController : MonoBehaviour
         gameRunning = false;
         Time.timeScale = 0f; 
         failurePanel.SetActive(true); 
-        Debug.Log("Time is up. GAME OVER");
     }
 
-
+    private void GameSuccess() 
+    {
+        gameRunning = false;
+        Time.timeScale = 0f; 
+        successPanel.SetActive(true); 
+    }
 
 }

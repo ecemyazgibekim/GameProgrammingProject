@@ -28,6 +28,13 @@ TagManager:
   - ObWaffle
   - ObYam
   - ObYogurt
+  - ObCherry
+  - ObMushroom
+  - ObEgg
+  - ObGarlic
+  - ObCarrot
+  - ObPizza
+  - ObWatermelon
   layers:
   - Default
   - TransparentFX
