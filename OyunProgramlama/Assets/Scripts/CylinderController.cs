@@ -10,7 +10,7 @@ public class CylinderController : MonoBehaviour
     private bool[] spawnPointOccupied;
     private string objectTypeOnCylinder = null;
     public int maxObjects = 3;
-    public float rejectionForce = 500f; 
+    public float rejectionForce = 900f; 
     public AudioClip rejectionSFX; 
     private AudioSource audioSource; 
     public AudioClip positiveSFX; 
