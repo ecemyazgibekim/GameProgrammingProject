@@ -24,6 +24,7 @@ public class CylinderController : MonoBehaviour
     private float timer = 300f; 
     private bool gameRunning = true; 
     public SpawnManager spawnManager;
+    private bool isSpawning = false;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class CylinderController : MonoBehaviour
         UpdateScoreText();
         failurePanel.SetActive(false); 
         successPanel.SetActive(false); 
+        SpawnObjectsIfNeeded(); 
     }
 
     void Update()
@@ -43,21 +45,25 @@ public class CylinderController : MonoBehaviour
 
             if (score >= 1150 || AreAllPrefabsCleared()) 
             {
-                GameSuccess();
+                //GameSuccess(); 
+                SpawnObjectsIfNeeded();
             }
         }
     }
 
-    private bool AreAllPrefabsCleared()
+    public bool AreAllPrefabsCleared()
     {
-        foreach (GameObject obj in spawnManager.spawnedObjects)
+        return spawnManager.AllObjectsCleared();
+    }
+
+    private void SpawnObjectsIfNeeded() 
+    {
+        if (!isSpawning && AreAllPrefabsCleared())
         {
-            if (obj != null) 
-            {
-                return false;
-            }
+            isSpawning = true;
+            spawnManager.SpawnObjects(); // SpawnManager ile yeni nesneler spawn edilir
+            isSpawning = false;
         }
-        return true; 
     }
 
     void OnTriggerEnter(Collider other)

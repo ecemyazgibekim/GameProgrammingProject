@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 122290905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.99, y: 0, z: 5.88}
+  m_LocalPosition: {x: 0.99, y: -3.83, z: 5.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -224,6 +224,7 @@ MonoBehaviour:
   - {fileID: 5816625248229073941, guid: 5d3150fc87b8e5c4287048b6438de63e, type: 3}
   spawnArea: {fileID: 1764289345}
   spawnedObjects: []
+  borderArea: {fileID: 169974950}
 --- !u!1 &138153151
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,10 +452,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 169974950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d19db9671e51321409f2fc1a518a9f9d, type: 3}
+  m_Script: {fileID: 11500000, guid: d8b7cab0c5b0f9c4b8e35ace2c5bd8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 2
+  deactivateTime: 3
 --- !u!1 &170690910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,7 +3324,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1764289344}
   - component: {fileID: 1764289345}
-  - component: {fileID: 1764289346}
   m_Layer: 0
   m_Name: SpawnArea
   m_TagString: Untagged
@@ -3340,7 +3340,7 @@ Transform:
   m_GameObject: {fileID: 1764289343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3365,21 +3365,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.8581185, y: 8.834541, z: 8.934817}
-  m_Center: {x: -0.61803365, y: 10.3096485, z: 4.6212335}
---- !u!114 &1764289346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764289343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d19db9671e51321409f2fc1a518a9f9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyTime: 5
+  m_Size: {x: 5.8581185, y: 16.280571, z: 8.934817}
+  m_Center: {x: -0.61803365, y: 19.779818, z: 4.6212335}
 --- !u!1 &1795816946
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,29 +10,54 @@ public class SpawnManager : MonoBehaviour
     [Header("Spawn Area")]
     public Collider spawnArea; 
 
-    private void Start()
-    {
-        SpawnObjects();
-    }
+    public List<GameObject> spawnedObjects = new List<GameObject>(); 
 
-    private void SpawnObjects()
+    private bool hasSpawned = false; 
+
+    public GameObject borderArea;
+
+    public void Start()
     {
-        if (spawnableObjects.Count == 0 || spawnArea == null) 
+        if (spawnableObjects == null || spawnableObjects.Count == 0)
         {
-            Debug.LogWarning("Spawn işlemi için gerekli ayarlar eksik.");
+            Debug.LogError("Spawn edilecek nesneler listesi boş! Lütfen spawnableObjects listesine nesneler ekleyin.");
             return;
         }
 
+        if (spawnArea == null)
+        {
+            Debug.LogError("Spawn alanı atanmadı! Lütfen spawnArea değişkenine bir collider atayın.");
+            return;
+        }
+
+        SpawnObjects();
+    }
+
+    public void Update()
+    {
+        if (AllObjectsCleared() && !hasSpawned)
+        {
+            SpawnObjects();
+            hasSpawned = true; 
+        }
+        else if (!AllObjectsCleared())
+        {
+            hasSpawned = false; 
+        }
+    }
+
+    public void SpawnObjects()
+    {
         foreach (GameObject obj in spawnableObjects)
         {
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++) 
             {
                 SpawnObject(obj);
             }
         }
+
+        borderArea.SetActive(true);
     }
-    
-    public List<GameObject> spawnedObjects = new List<GameObject>(); 
 
     private void SpawnObject(GameObject obj)
     {
@@ -47,5 +72,31 @@ public class SpawnManager : MonoBehaviour
         float y = Random.Range(bounds.min.y, bounds.max.y);
         float z = Random.Range(bounds.min.z, bounds.max.z);
         return new Vector3(x, y, z);
+    }
+
+    public void ClearSpawnedObjects()
+    {
+        foreach (GameObject obj in spawnedObjects)
+        {
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+
+        spawnedObjects.Clear();
+        Debug.Log("Tüm spawn edilmiş nesneler temizlendi.");
+    }
+
+    public bool AllObjectsCleared()
+    {
+        foreach (GameObject obj in spawnedObjects)
+        {
+            if (obj != null)
+            {
+                return false; 
+            }
+        }
+        return true; 
     }
 }
