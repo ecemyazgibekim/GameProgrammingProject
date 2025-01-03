@@ -473,7 +473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &170690911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1479,7 +1479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &565830948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2381,7 +2381,6 @@ MonoBehaviour:
   duplicateTagSFX: {fileID: 0}
   duplicateTagVFX: {fileID: 0}
   scoreText: {fileID: 0}
-  timerText: {fileID: 0}
   failurePanel: {fileID: 0}
   successPanel: {fileID: 0}
   spawnManager: {fileID: 0}
@@ -2686,7 +2685,6 @@ MonoBehaviour:
   duplicateTagSFX: {fileID: 8300000, guid: 2295ee2a3e78b8b4ebd1aefc1efc0915, type: 3}
   duplicateTagVFX: {fileID: 4938095755617958529, guid: 2e79f16be10fbd14f8d5ef191f8db4aa, type: 3}
   scoreText: {fileID: 2128770601}
-  timerText: {fileID: 1953041646}
   failurePanel: {fileID: 226769689}
   successPanel: {fileID: 430748701}
   spawnManager: {fileID: 122290907}
@@ -2846,7 +2844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 47, y: -94}
+  m_AnchoredPosition: {x: 47, y: -39.2}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1613059003
@@ -4310,7 +4308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 123, y: -94.70001}
+  m_AnchoredPosition: {x: 123, y: -39.899963}
   m_SizeDelta: {x: 220, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2128770601
@@ -4396,7 +4394,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -314.76123, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

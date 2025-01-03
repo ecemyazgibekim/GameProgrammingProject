@@ -18,17 +18,17 @@ public class CylinderController : MonoBehaviour
     public GameObject duplicateTagVFX; 
     public TMP_Text scoreText;
     private int score = 0; 
-    public TMP_Text timerText; 
+    //public TMP_Text timerText; 
     public GameObject failurePanel; 
     public GameObject successPanel; 
-    private float timer = 300f; 
+    //private float timer = 300f; 
     private bool gameRunning = true; 
     public SpawnManager spawnManager;
     private bool isSpawning = false;
 
     void Start()
     {
-        StartCoroutine(TimerCountdown());
+        //StartCoroutine(TimerCountdown());
         spawnPointOccupied = new bool[spawnPoints.Length];
         audioSource = gameObject.AddComponent<AudioSource>();
         UpdateScoreText();
@@ -41,7 +41,7 @@ public class CylinderController : MonoBehaviour
     {
         if (gameRunning) 
         {
-            UpdateTimerText(); 
+            //UpdateTimerText(); 
 
             if (score >= 1150 || AreAllPrefabsCleared()) 
             {
@@ -208,27 +208,27 @@ public class CylinderController : MonoBehaviour
         Debug.Log("Spawn noktaları ve sahnedeki nesneler temizlendi.");
     }
 
-    private IEnumerator TimerCountdown() 
-    {
-        while (timer > 0)
-        {
-            yield return new WaitForSeconds(1f);
-            timer -= 1f; 
-            UpdateTimerText(); 
-        }
+    //private IEnumerator TimerCountdown() 
+    //{
+    //    while (timer > 0)
+    //    {
+    //        yield return new WaitForSeconds(1f);
+    //        timer -= 1f; 
+    //        UpdateTimerText(); 
+    //    }
+    //
+    //    GameOver(); 
+    //}
 
-        GameOver(); 
-    }
-
-    private void UpdateTimerText() 
-    {
-        if (timerText != null)
-        {
-            int minutes = Mathf.FloorToInt(timer / 60f);
-            int seconds = Mathf.FloorToInt(timer % 60f);
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
-        }
-    }
+    //private void UpdateTimerText() 
+    //{
+    //    if (timerText != null)
+    //    {
+    //        int minutes = Mathf.FloorToInt(timer / 60f);
+    //        int seconds = Mathf.FloorToInt(timer % 60f);
+    //        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
+    //    }
+    //}
 
     private void GameOver() 
     {
