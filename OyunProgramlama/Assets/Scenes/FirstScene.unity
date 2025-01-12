@@ -3355,6 +3355,7 @@ MonoBehaviour:
   slowMotionTimerText: {fileID: 0}
   slowMotionShowText: {fileID: 0}
   liftObjectsButton: {fileID: 0}
+  liftObjectsTimerText: {fileID: 0}
 --- !u!65 &1487394907
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3789,6 +3790,7 @@ MonoBehaviour:
   slowMotionTimerText: {fileID: 667722667}
   slowMotionShowText: {fileID: 1648600280}
   liftObjectsButton: {fileID: 714563894}
+  liftObjectsTimerText: {fileID: 1994008213}
 --- !u!65 &1548136126
 BoxCollider:
   m_ObjectHideFlags: 0

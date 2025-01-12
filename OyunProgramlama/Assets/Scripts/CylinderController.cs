@@ -44,6 +44,9 @@ public class CylinderController : MonoBehaviour
 
     [Header("Lift Objects Skill")]
     public Button liftObjectsButton;
+    public TMP_Text liftObjectsTimerText;
+    private bool isLiftObjectsActive = false;
+    private float liftObjectsDuration = 5f;
 
     void Start()
     {
@@ -69,7 +72,7 @@ public class CylinderController : MonoBehaviour
 
         if (liftObjectsButton != null)
         {
-            liftObjectsButton.onClick.AddListener(LiftObjects);
+            liftObjectsButton.onClick.AddListener(ActivateLiftObjects);
         }
     }
 
@@ -264,14 +267,37 @@ public class CylinderController : MonoBehaviour
         slowMotionShowText.SetActive(false);
     }
 
-    private void LiftObjects()
+    private IEnumerator LiftObjectsRoutine()
     {
+        isLiftObjectsActive = true;
+        liftObjectsButton.interactable = false;
+        float countdown = liftObjectsDuration;
+
         foreach (GameObject obj in spawnManager.spawnedObjects)
         {
             if (obj != null && obj.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
-                rb.AddForce(Vector3.up * 500f); 
+                rb.AddForce(Vector3.up * 500f); // Nesnelere yukarıya doğru kuvvet uygula
             }
+        }
+
+        while (countdown > 0)
+        {
+            liftObjectsTimerText.text = countdown.ToString("0");
+            yield return new WaitForSeconds(1f);
+            countdown--;
+        }
+
+        liftObjectsTimerText.text = "";
+        isLiftObjectsActive = false;
+        liftObjectsButton.interactable = true;
+    }
+
+    private void ActivateLiftObjects()
+    {
+        if (!isLiftObjectsActive)
+        {
+            StartCoroutine(LiftObjectsRoutine());
         }
     }
 
