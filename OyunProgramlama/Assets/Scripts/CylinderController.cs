@@ -129,9 +129,10 @@ public class CylinderController : MonoBehaviour
 
                 if (objectsOnCylinder.FindAll(obj => obj.tag == objectTypeOnCylinder).Count == 2)
                 {
-                    PlayDuplicateTagEffect();
+                    GameObject obj1 = objectsOnCylinder.Find(obj => obj.tag == objectTypeOnCylinder);
+                    GameObject obj2 = objectsOnCylinder.FindLast(obj => obj.tag == objectTypeOnCylinder);
+                    StartCoroutine(AnimateMatchingObjects(obj1, obj2));
                     IncreaseScore(50);
-                    StartCoroutine(ClearSpawnPointsAfterDelay(0.5f));
                 }
             }
             else
@@ -141,6 +142,7 @@ public class CylinderController : MonoBehaviour
             }
         }
     }
+
 
     private void MoveToSpawnPoint(GameObject obj)
     {
@@ -338,6 +340,37 @@ public class CylinderController : MonoBehaviour
     //        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
     //    }
     //}
+
+    private IEnumerator AnimateMatchingObjects(GameObject obj1, GameObject obj2)
+    {
+        Vector3 midpoint = (obj1.transform.position + obj2.transform.position) / 2;
+        float duration = 0.5f;
+        float elapsedTime = 0f;
+
+        Vector3 startPos1 = obj1.transform.position;
+        Vector3 startPos2 = obj2.transform.position;
+
+        if (duplicateTagSFX != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(duplicateTagSFX);
+        }
+
+         if (duplicateTagVFX != null)
+        {
+            Instantiate(duplicateTagVFX, obj1.transform.position, Quaternion.identity);
+            Instantiate(duplicateTagVFX, obj2.transform.position, Quaternion.identity);
+        }
+
+        while (elapsedTime < duration)
+        {
+            obj1.transform.position = Vector3.Lerp(startPos1, midpoint, elapsedTime / duration);
+            obj2.transform.position = Vector3.Lerp(startPos2, midpoint, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        StartCoroutine(ClearSpawnPointsAfterDelay(0.2f));
+    }
 
     private void GameOver() 
     {
