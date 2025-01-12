@@ -34,6 +34,17 @@ public class CylinderController : MonoBehaviour
     private bool isDoublePointsActive = false;
     private float doublePointsDuration = 5f;
 
+    [Header("Slow Motion Skill")]
+    public Button slowMotionButton;
+    public TMP_Text slowMotionTimerText;
+    private bool isSlowMotionActive = false;
+    private float slowMotionDuration = 5f;
+    private float normalTimeScale = 1f;
+    public GameObject slowMotionShowText;
+
+    [Header("Lift Objects Skill")]
+    public Button liftObjectsButton;
+
     void Start()
     {
         //StartCoroutine(TimerCountdown());
@@ -44,10 +55,21 @@ public class CylinderController : MonoBehaviour
         successPanel.SetActive(false); 
         SpawnObjectsIfNeeded(); 
         doublePointsShowText.SetActive(false);
+        slowMotionShowText.SetActive(false);
 
         if (doublePointsButton != null)
         {
             doublePointsButton.onClick.AddListener(ActivateDoublePoints);
+        }
+
+        if (slowMotionButton != null)
+        {
+            slowMotionButton.onClick.AddListener(ActivateSlowMotion);
+        }
+
+        if (liftObjectsButton != null)
+        {
+            liftObjectsButton.onClick.AddListener(LiftObjects);
         }
     }
 
@@ -208,6 +230,47 @@ public class CylinderController : MonoBehaviour
         isDoublePointsActive = false;
         doublePointsButton.interactable = true;
         doublePointsShowText.SetActive(false);
+    }
+
+    private void ActivateSlowMotion()
+    {
+        if (!isSlowMotionActive)
+        {
+            StartCoroutine(SlowMotionRoutine());
+        }
+    }
+
+    private IEnumerator SlowMotionRoutine()
+    {
+        isSlowMotionActive = true;
+        slowMotionButton.interactable = false;
+        Time.timeScale = 0.3f; 
+        float countdown = slowMotionDuration;
+
+        while (countdown > 0)
+        {
+            slowMotionTimerText.text = countdown.ToString("0");
+            yield return new WaitForSecondsRealtime(1f);
+            countdown--;
+            slowMotionShowText.SetActive(true);
+        }
+
+        Time.timeScale = normalTimeScale; 
+        slowMotionTimerText.text = "";
+        isSlowMotionActive = false;
+        slowMotionButton.interactable = true;
+        slowMotionShowText.SetActive(false);
+    }
+
+    private void LiftObjects()
+    {
+        foreach (GameObject obj in spawnManager.spawnedObjects)
+        {
+            if (obj != null && obj.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                rb.AddForce(Vector3.up * 500f); 
+            }
+        }
     }
 
     private void IncreaseScore(int amount)
