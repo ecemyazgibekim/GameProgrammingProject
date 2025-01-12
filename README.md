@@ -63,7 +63,23 @@ _Bol şans! 🎯_ <br/><br/>
 1. 🛠️ **Unity Sürümü:** Unity 2022.3.31f  
 2. 🎨 **Assets:** Hyper Visual FX (🗓️ January 20, 2022) - 2D Casual UI HD (🗓️ Feb 23, 2017) - 🎥 Recorder - ✍️ TextMeshPro  
 3. 📦 **Build Type:** WebGL  
-4. 📱 **Game Type:** 3D Vertical Mobile  
+4. 📱 **Game Type:** 3D Vertical Mobile
+   
+##  OYUN İÇİ GÖRSELLER
+#### Başlangıç Ekranı:
+![Ekran görüntüsü 2025-01-12 205941](https://github.com/user-attachments/assets/7454d224-1930-4c2d-a879-e736f425b11c)
+
+#### İki Nesne Başarıyla Eşleştirildiğinde Tek Nesneye Dönüşerek Kaybolması Animasyonu
+https://github.com/user-attachments/assets/eed44df2-1d72-47bb-a608-bb0d107fa0d8
+
+#### Nesneleri Eşleştirdiğinde 5 Saniyeliğine 2 Kat Puan Kazanma Skilli
+https://github.com/user-attachments/assets/bc47effe-c6f7-496e-8993-6239221aff41
+
+#### Nesneleri Lift Butonuyla Havaya Kaldırma Skilli
+https://github.com/user-attachments/assets/72009aea-8ab2-4c50-9e04-d5177f46c30f
+
+#### Nesneleri Slow Skilli ile Yavaşlatma
+https://github.com/user-attachments/assets/cf5a65ad-e6b0-4f6e-8729-5c4430a027f5
 
 ---
 
