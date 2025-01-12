@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CylinderController : MonoBehaviour
@@ -26,6 +27,13 @@ public class CylinderController : MonoBehaviour
     public SpawnManager spawnManager;
     private bool isSpawning = false;
 
+    [Header("Double Points Skill")]
+    public Button doublePointsButton;
+    public TMP_Text doublePointsTimerText;
+    public GameObject doublePointsShowText;
+    private bool isDoublePointsActive = false;
+    private float doublePointsDuration = 5f;
+
     void Start()
     {
         //StartCoroutine(TimerCountdown());
@@ -35,6 +43,12 @@ public class CylinderController : MonoBehaviour
         failurePanel.SetActive(false); 
         successPanel.SetActive(false); 
         SpawnObjectsIfNeeded(); 
+        doublePointsShowText.SetActive(false);
+
+        if (doublePointsButton != null)
+        {
+            doublePointsButton.onClick.AddListener(ActivateDoublePoints);
+        }
     }
 
     void Update()
@@ -61,7 +75,7 @@ public class CylinderController : MonoBehaviour
         if (!isSpawning && AreAllPrefabsCleared())
         {
             isSpawning = true;
-            spawnManager.SpawnObjects(); // SpawnManager ile yeni nesneler spawn edilir
+            spawnManager.SpawnObjects(); 
             isSpawning = false;
         }
     }
@@ -168,8 +182,40 @@ public class CylinderController : MonoBehaviour
         }
     }
 
+    private void ActivateDoublePoints()
+    {
+        if (!isDoublePointsActive)
+        {
+            StartCoroutine(DoublePointsRoutine());
+        }
+    }
+
+    private IEnumerator DoublePointsRoutine()
+    {
+        isDoublePointsActive = true;
+        doublePointsButton.interactable = false;
+        float countdown = doublePointsDuration;
+
+        while (countdown > 0)
+        {
+            doublePointsTimerText.text = countdown.ToString("F0");
+            yield return new WaitForSeconds(1f);
+            countdown--;
+            doublePointsShowText.SetActive(true);
+        }
+
+        doublePointsTimerText.text = "";
+        isDoublePointsActive = false;
+        doublePointsButton.interactable = true;
+        doublePointsShowText.SetActive(false);
+    }
+
     private void IncreaseScore(int amount)
     {
+        if (isDoublePointsActive)
+        {
+            amount *= 2; 
+        }
         score += amount;
         UpdateScoreText();
     }
